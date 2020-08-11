@@ -16,14 +16,13 @@ Content-Type: application/json;charset=utf-8
 ## Test d'un token ko
 
 ``` shell
-curl -i -XGET 'http://127.0.0.1:8081/token/check?uid=ok&token=ko'
-HTTP/1.1 200 OK
+curl -i -XGET 'http://127.0.0.1:8888/token/check?uid=ok&token=ko'
+HTTP/1.1 401 Unauthorized
 Transfer-Encoding: chunked
-Date: Tue, 11 Aug 2020 19:29:27 GMT
+Date: Tue, 11 Aug 2020 20:03:31 GMT
 Server: Warp/3.3.13
-Content-Type: application/json;charset=utf-8
 
-{"error":0,"msg":"ko"}
+ko
 ```
 
 ## Build

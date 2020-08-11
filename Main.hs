@@ -45,9 +45,9 @@ neoToken = Proxy
 neoTokenV1API :: Maybe Text -> Maybe Text -> Handler NeoTokenV1CheckResponse
 neoTokenV1API (Just uid) (Just token) = case token of
   "ok" -> return NeoTokenIsAuth { ntcrAuthentification = True, ntcrUid = "uidok" }
-  "ko" -> return NeoTokenIsUnAuth { ntcrError = 0, ntcrMsg = "ko" }
+  "ko" -> throwError err401 { errBody = "ko" }
   _ -> return NeoTokenIsAuth { ntcrAuthentification = True, ntcrUid = "untoken" }
-neoTokenV1API _ _ = return NeoTokenIsUnAuth { ntcrError = 0, ntcrMsg = "manque un des params" }
+neoTokenV1API _ _ = throwError err401 { errBody = "manque un ou des param(s)" }
 
 srvNeoTokenV1 :: Server NeoTokenV1
 srvNeoTokenV1 = neoTokenV1API
